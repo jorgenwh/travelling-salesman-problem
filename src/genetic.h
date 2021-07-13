@@ -19,9 +19,9 @@ std::vector<std::string> pmx(std::vector<std::string>& genome1, std::vector<std:
 
 
 namespace mutate {
-std::vector<std::string> swap_mutate(std::vector<std::string> genome);
-std::vector<std::string> shuffle_mutate(std::vector<std::string> genome);
-std::vector<std::string> inversion_mutate(std::vector<std::string> genome);
+void swap_mutate(std::vector<std::string>& genome);
+void shuffle_mutate(std::vector<std::string>& genome);
+void inversion_mutate(std::vector<std::string>& genome);
 } // mutate
 
 } // genetic
