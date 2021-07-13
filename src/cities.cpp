@@ -1,4 +1,4 @@
-#include "city_data.h"
+#include "cities.h"
 
 #include <fstream>
 #include <iostream>
@@ -7,7 +7,7 @@
 #include <bits/stdc++.h>
 #include <string>
 
-void CityData::read_city_file(std::string& filename) {
+void Cities::read_city_file(std::string& filename) {
     std::string line;
     std::ifstream f(filename);
 

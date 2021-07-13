@@ -5,9 +5,9 @@
 #include <vector>   
 #include <fstream>
 
-class CityData {
+class Cities {
     public:
-        CityData(std::string& filename) {
+        Cities(std::string& filename) {
             read_city_file(filename);
         }
 
@@ -17,6 +17,8 @@ class CityData {
             float distance = distances[row + (col * cities.size())];
             return distance;
         }
+
+        std::vector<std::string> get_cities() const { return cities; }
 
     private:
         std::unordered_map<std::string, int> index_map;

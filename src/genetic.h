@@ -1,9 +1,27 @@
+#include "solution.h"
+#include "cities.h"
+
+#include <string>
+#include <vector>
+
+namespace genetic {
+
+// store result data from optimization algorithm
+struct Data {
+    Data(std::vector<std::string>& perm, float& dist) : shortest_permutation(perm), shortest_distance(dist) {}
+    std::vector<std::string> shortest_permutation;
+    float shortest_distance;
+};
+
+namespace crossover {
+std::vector<std::string> pmx(std::vector<std::string>& genome1, std::vector<std::string>& genome2);
+} // crossover
 
 
-namespace Genetic {
+namespace mutate {
+std::vector<std::string> swap_mutate(std::vector<std::string> genome);
+std::vector<std::string> shuffle_mutate(std::vector<std::string> genome);
+std::vector<std::string> inversion_mutate(std::vector<std::string> genome);
+} // mutate
 
-float add_one(float num) {
-    return num + 1.0;
-}
-
-} // Genetic
+} // genetic
