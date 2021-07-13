@@ -14,7 +14,6 @@ int randint(int min, int max) {
 }
 
 namespace genetic {
-
 namespace crossover {
 
 std::vector<std::string> pmx(std::vector<std::string>& genome1, std::vector<std::string>& genome2) {
@@ -57,7 +56,6 @@ std::vector<std::string> pmx(std::vector<std::string>& genome1, std::vector<std:
 
     return child;
 }
-
 } // crossover
 
 namespace mutate {
@@ -89,5 +87,4 @@ void inversion_mutate(std::vector<std::string>& genome) {
 }
 
 } // mutate
-
 } // genetic
