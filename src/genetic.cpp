@@ -5,6 +5,7 @@
 #include <vector>
 #include <random>
 #include <algorithm>
+#include <iostream>
 
 int randint(int min, int max) {
     std::random_device rd;
@@ -33,9 +34,8 @@ std::vector<std::string> pmx(std::vector<std::string>& genome1, std::vector<std:
     // look through the determined segment and find all elements in genome2 that weren't copied to the child
     for (int i = idx1; i < idx2; i++) {
         int ind = i;
-        auto x = genome2[ind];
         // check if child contains x
-        if (std::find(child.begin(), child.end(), x) != child.end()) {
+        if (std::find(child.begin(), child.end(), genome2[ind]) == child.end()) {
             while (child[ind] != "") {
                 auto g1_elem = genome1[ind];
                 
@@ -44,7 +44,7 @@ std::vector<std::string> pmx(std::vector<std::string>& genome1, std::vector<std:
                 int pos = it - genome2.begin();
                 ind = pos;
             }
-            child[ind] = genome2[ind];
+            child[ind] = genome2[i];
         }
     }
 
@@ -65,6 +65,7 @@ auto rnd_engine = std::default_random_engine {};
 void swap_mutate(std::vector<std::string>& genome) {
     int idx1 = randint(0, genome.size() - 1);
     int idx2 = randint(0, genome.size() - 1);
+    std::cout << "idx1: " << idx1 << ", idx2: " << idx2 << std::endl;
     std::swap(genome[idx1], genome[idx2]);
 }
 
