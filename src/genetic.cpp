@@ -15,6 +15,22 @@ int randint(int min, int max) {
 }
 
 namespace genetic {
+
+Solution genetically_optimize( {
+
+    Solution best_solution; 
+
+    // initialize a random starting population
+    std::vector<Solution> population(population_size);
+    for (int i = 0; i < population_size; i++) {
+        Solution solution(cities);
+        mutate::shuffle_mutate(solution.permutation);
+        population[i] = solution;
+    }
+
+    return best_solution;
+
+
 namespace crossover {
 
 std::vector<std::string> pmx(std::vector<std::string>& genome1, std::vector<std::string>& genome2) {

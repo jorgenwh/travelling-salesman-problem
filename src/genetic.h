@@ -1,17 +1,18 @@
 #include "solution.h"
 #include "cities.h"
 
+#include <limits>
 #include <string>
 #include <vector>
+#include <limits>
 
 namespace genetic {
 
-// store result data from optimization algorithm
-struct Data {
-    Data(std::vector<std::string>& perm, float& dist) : shortest_permutation(perm), shortest_distance(dist) {}
-    std::vector<std::string> shortest_permutation;
-    float shortest_distance;
-};
+Solution genetically_optimize(
+        std::vector<std::string> cities, 
+        int population_size, 
+        float mutation_rate,
+        int generations);}
 
 namespace crossover {
 std::vector<std::string> pmx(std::vector<std::string>& genome1, std::vector<std::string>& genome2);
