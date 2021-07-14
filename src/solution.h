@@ -6,7 +6,12 @@
 
 // struct to represent a single solution
 struct Solution {
+    Solution() = default;
     Solution(std::vector<std::string>& perm) : permutation(perm) {}
+    Solution(const Solution& solution) { 
+        permutation = solution.permutation;
+        distance = solution.distance;
+    }
 
     void pretty() const {
         for (std::string city: permutation)

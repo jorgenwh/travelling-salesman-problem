@@ -1,4 +1,5 @@
 #include "genetic.h"
+#include "cities.h"
 
 #include <bits/stdc++.h>
 #include <string>
@@ -16,20 +17,30 @@ int randint(int min, int max) {
 
 namespace genetic {
 
-Solution genetically_optimize( {
+Solution* genetically_optimize(
+        Cities cities, 
+        int population_size, 
+        float mutation_rate,
+        int generations) {
 
-    Solution best_solution; 
+    Solution* best_solution = nullptr; 
 
     // initialize a random starting population
     std::vector<Solution> population(population_size);
     for (int i = 0; i < population_size; i++) {
-        Solution solution(cities);
-        mutate::shuffle_mutate(solution.permutation);
+        auto permutation = cities.get_cities();
+        mutate::shuffle_mutate(permutation);
+        Solution solution(permutation);
+        solution.distance = cities.evaluate(solution.permutation);
         population[i] = solution;
+        
+        if (best_solution == nullptr || population[i] < (*best_solution)) {
+            best_solution = new Solution(population[i]);
+        }
     }
 
     return best_solution;
-
+}
 
 namespace crossover {
 

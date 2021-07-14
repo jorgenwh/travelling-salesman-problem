@@ -1,5 +1,7 @@
 #pragma once
 
+#include "solution.h"
+
 #include <string>
 #include <unordered_map>
 #include <vector>   
@@ -19,6 +21,7 @@ class Cities {
         }
 
         std::vector<std::string> get_cities() const { return cities; }
+        float evaluate(std::vector<std::string>& permutation);
 
     private:
         std::unordered_map<std::string, int> index_map;

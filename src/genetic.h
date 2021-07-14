@@ -8,11 +8,11 @@
 
 namespace genetic {
 
-Solution genetically_optimize(
-        std::vector<std::string> cities, 
+Solution* genetically_optimize(
+        Cities cities, 
         int population_size, 
         float mutation_rate,
-        int generations);}
+        int generations);
 
 namespace crossover {
 std::vector<std::string> pmx(std::vector<std::string>& genome1, std::vector<std::string>& genome2);

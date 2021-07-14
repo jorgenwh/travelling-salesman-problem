@@ -35,3 +35,13 @@ void Cities::read_city_file(std::string& filename) {
         exit(1);
     }
 }
+
+float Cities::evaluate(std::vector<std::string>& permutation) {
+     float total_distance = 0;
+     for (int i = 0; i < permutation.size() - 1; i++) {
+         total_distance += distance(permutation[i], permutation[i+1]);
+     }
+     total_distance += distance(permutation.back(), permutation[0]);
+     return total_distance;
+}
+
