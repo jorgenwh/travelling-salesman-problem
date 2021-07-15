@@ -1,18 +1,18 @@
-#include "solution.h"
-#include "cities.h"
+#pragma once
 
 #include <limits>
+#include <iterator>
 #include <string>
 #include <vector>
 #include <limits>
+#include <random>
 
 namespace genetic {
 
-Solution* genetically_optimize(
-        Cities cities, 
-        int population_size, 
-        float mutation_rate,
-        int generations);
+static std::random_device rd;
+static std::mt19937 gen(rd());
+
+int randint(int min, int max);
 
 namespace crossover {
 std::vector<std::string> pmx(std::vector<std::string>& genome1, std::vector<std::string>& genome2);

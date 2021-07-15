@@ -8,38 +8,13 @@
 #include <algorithm>
 #include <iostream>
 
-int randint(int min, int max) {
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_int_distribution<> distr(min, max);
-    return distr(gen);
-}
-
 namespace genetic {
 
-Solution* genetically_optimize(
-        Cities cities, 
-        int population_size, 
-        float mutation_rate,
-        int generations) {
-
-    Solution* best_solution = nullptr; 
-
-    // initialize a random starting population
-    std::vector<Solution> population(population_size);
-    for (int i = 0; i < population_size; i++) {
-        auto permutation = cities.get_cities();
-        mutate::shuffle_mutate(permutation);
-        Solution solution(permutation);
-        solution.distance = cities.evaluate(solution.permutation);
-        population[i] = solution;
-        
-        if (best_solution == nullptr || population[i] < (*best_solution)) {
-            best_solution = new Solution(population[i]);
-        }
-    }
-
-    return best_solution;
+int randint(int min, int max) {
+    using distribution_type = std::uniform_int_distribution<int>;
+    using param_type = typename distribution_type::param_type;
+    thread_local distribution_type dist;
+    return dist(gen, param_type(min, max));
 }
 
 namespace crossover {
@@ -92,7 +67,6 @@ auto rnd_engine = std::default_random_engine {};
 void swap_mutate(std::vector<std::string>& genome) {
     int idx1 = randint(0, genome.size() - 1);
     int idx2 = randint(0, genome.size() - 1);
-    std::cout << "idx1: " << idx1 << ", idx2: " << idx2 << std::endl;
     std::swap(genome[idx1], genome[idx2]);
 }
 
