@@ -16,8 +16,8 @@ public:
     void start_search();
 
     // get data representing the best found solution
-    std::vector<std::string> get_best_permutation() const;
-    float get_best_distance() const;
+    std::vector<std::string> get_best_permutation() const { return best_permutation; }
+    float get_best_distance() const { return best_distance; }
 
 private:
     // the current permutation and thread count
@@ -32,6 +32,9 @@ private:
     // data storing the best solution found so far
     std::vector<std::string> best_permutation;
     float best_distance;
+
+    // search through permutations
+    void search();
 
     // get the next permutation
     std::vector<std::string> &next_permutation();
