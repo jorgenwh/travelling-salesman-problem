@@ -1,9 +1,9 @@
 CXX = g++
-CXXFLAGS = -std=c++17 -O2
+CXXFLAGS = -std=c++17 -O3 -pthread
 CPPFLAGS =
 
-obj = build/main.o build/cities.o build/exhaustive.o 
-headers = cities.h exhaustive.h
+obj = build/main.o build/cities.o 
+headers = cities.h 
 
 prog: $(obj)
 	$(CXX) $(CXXFLAGS) $(CPPFLAGS) $(obj) -o prog
@@ -13,9 +13,6 @@ build/main.o: main.cpp $(headers)
 
 build/cities.o: cities.cpp $(headers)
 	$(CXX) $(CXXFLAGS) $(CPPFLAGS) -c cities.cpp -o build/cities.o
-
-build/exhaustive.o: exhaustive.cpp $(headers)
-	$(CXX) $(CXXFLAGS) $(CPPFLAGS) -c exhaustive.cpp -o build/exhaustive.o
 
 .PHONY: clean
 clean:

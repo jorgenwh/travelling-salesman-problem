@@ -8,6 +8,7 @@
 #include <algorithm>
 #include <iostream>
 
+namespace TSP {
 namespace genetic {
 
 int randint(int min, int max) {
@@ -90,3 +91,4 @@ void inversion_mutate(std::vector<std::string>& genome) {
 
 } // mutate
 } // genetic
+} // TSP

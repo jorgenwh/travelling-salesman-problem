@@ -5,6 +5,8 @@
 #include <vector>   
 #include <fstream>
 
+namespace TSP {
+
 class Cities {
     public:
         Cities(std::string& filename) {
@@ -28,3 +30,4 @@ class Cities {
 
         void read_city_file(std::string& filename);
 };
+} // TSP

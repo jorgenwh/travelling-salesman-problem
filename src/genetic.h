@@ -7,6 +7,7 @@
 #include <limits>
 #include <random>
 
+namespace TSP {
 namespace genetic {
 
 static std::random_device rd;
@@ -24,3 +25,4 @@ void shuffle_mutate(std::vector<std::string>& genome);
 void inversion_mutate(std::vector<std::string>& genome);
 } // mutate
 } // genetic
+} // TSP

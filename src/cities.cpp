@@ -7,6 +7,8 @@
 #include <bits/stdc++.h>
 #include <string>
 
+namespace TSP {
+
 void Cities::read_city_file(std::string& filename) {
     std::string line;
     std::ifstream f(filename);
@@ -44,4 +46,4 @@ float Cities::evaluate(std::vector<std::string>& permutation) {
      total_distance += distance(permutation.back(), permutation[0]);
      return total_distance;
 }
-
+} // TSP
