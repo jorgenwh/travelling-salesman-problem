@@ -9,7 +9,7 @@
 
 namespace TSP {
 
-void Cities::read_city_file(std::string& filename) {
+void initialize_city_data(std::string &filename) {
     std::string line;
     std::ifstream f(filename);
 
@@ -38,7 +38,7 @@ void Cities::read_city_file(std::string& filename) {
     }
 }
 
-float Cities::evaluate(std::vector<std::string>& permutation) {
+float evaluate(std::vector<std::string> &permutation) {
      float total_distance = 0;
      for (int i = 0; i < permutation.size() - 1; i++) {
          total_distance += distance(permutation[i], permutation[i+1]);

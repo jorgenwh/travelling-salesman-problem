@@ -1,33 +1,22 @@
 #pragma once
 
-#include <string>
-#include <unordered_map>
-#include <vector>   
 #include <fstream>
+#include <iostream>
+#include <unordered_map>
+#include <vector>
+#include <bits/stdc++.h>
+#include <string>
 
 namespace TSP {
 
-class Cities {
-    public:
-        Cities(std::string& filename) {
-            read_city_file(filename);
-        }
+extern std::vector<std::string> cities;
+extern std::vector<float> distances;
+extern std::unordered_map<std::string, int> index_map;
 
-        float distance(std::string& city1, std::string& city2) {
-            int row = index_map[city1];
-            int col = index_map[city2];
-            float distance = distances[row + (col * cities.size())];
-            return distance;
-        }
+void initialize_city_data(std::string &filename);
+float distance(std::string &c1, std::string &c2) {
+    return distances[index_map[c1] + (index_map[c2] * cities.size())];
+}
+static float evaluate(std::vector<std::string> &permutation);
 
-        std::vector<std::string> get_cities() const { return cities; }
-        float evaluate(std::vector<std::string>& permutation);
-
-    private:
-        std::unordered_map<std::string, int> index_map;
-        std::vector<std::string> cities;
-        std::vector<float> distances;
-
-        void read_city_file(std::string& filename);
-};
 } // TSP

@@ -11,13 +11,10 @@ int main(int argc, char **argv) {
     int num_cities = 10;//std::stoi(argv[2]);
     int num_threads = 1;//std::stoi(argv[3]);
 
-    TSP::Cities cities(filename);
+    TSP::initialize_city_data(filename);
+    auto cities = TSP::get_cities();
 
-    auto all_cities_vec = cities.get_cities();
-    std::vector<std::string> city_vec(num_cities);
-    for (int i = 0; i < num_cities; i++) {
-        city_vec[i] = all_cities_vec[i];
-    }
-
-    
+    std::cout << cities.size() << std::endl;
+    for (auto x: cities)
+        std::cout << x << std::endl;
 }

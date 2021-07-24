@@ -1,11 +1,9 @@
 #include "genetic.h"
-#include "cities.h"
 
 #include <bits/stdc++.h>
 #include <string>
 #include <vector>
 #include <random>
-#include <algorithm>
 #include <iostream>
 
 namespace TSP {
@@ -20,7 +18,7 @@ int randint(int min, int max) {
 
 namespace crossover {
 
-std::vector<std::string> pmx(std::vector<std::string>& genome1, std::vector<std::string>& genome2) {
+std::vector<std::string> pmx(std::vector<std::string> &genome1, std::vector<std::string> &genome2) {
     int length = genome1.size();
 
     // determine the segment that we copy from genome1 into the child
@@ -65,28 +63,29 @@ namespace mutate {
 
 auto rnd_engine = std::default_random_engine {};
 
-void swap_mutate(std::vector<std::string>& genome) {
+std::vector<std::string> &swap_mutate(std::vector<std::string> &genome) {
     int idx1 = randint(0, genome.size() - 1);
     int idx2 = randint(0, genome.size() - 1);
     std::swap(genome[idx1], genome[idx2]);
+    return genome;
 }
 
-void shuffle_mutate(std::vector<std::string>& genome) {
+std::vector<std::string> &shuffle_mutate(std::vector<std::string> &genome) {
     int idx1 = randint(0, genome.size() - 1);
     int idx2 = randint(0, genome.size() - 1);
     if (idx1 > idx2)
         std::swap(idx1, idx2);
-
     std::shuffle(genome.begin() + idx1, genome.begin() + idx2, rnd_engine);
+    return genome;
 }
 
-void inversion_mutate(std::vector<std::string>& genome) {
+std::vector<std::string> &inversion_mutate(std::vector<std::string> &genome) {
     int idx1 = randint(0, genome.size() - 1);
     int idx2 = randint(0, genome.size() - 1);
     if (idx1 > idx2)
         std::swap(idx1, idx2);
-    
     std::reverse(genome.begin() + idx1, genome.begin() + idx2);
+    return genome;
 }
 
 } // mutate
