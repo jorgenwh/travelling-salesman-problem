@@ -102,7 +102,9 @@ solution optimize(
                         exit(1);
                 }
             }
+            std::cout << 1 << std::endl;
             children[i] = solution(child_permutation);
+            std::cout << 2 << std::endl;
         }
         
         // add the new children to the population
