@@ -9,6 +9,17 @@
 namespace TSP {
 namespace genetic {
 
+std::vector<solution> initialize_random_solutions(int population_size) {
+    std::vector<solution> population(population_size);
+    /*for (int i = 0; i < population_size; i++) {
+        std::vector<std::string> permutation = TSP::get_cities();
+        std::shuffle(permutation.begin(), permutation.end(), rnd_engine);
+        solution s(permutation);
+        population[i] = s;
+    }*/
+    return population;
+}
+
 int randint(int min, int max) {
     using distribution_type = std::uniform_int_distribution<int>;
     using param_type = typename distribution_type::param_type;
@@ -61,7 +72,6 @@ std::vector<std::string> pmx(std::vector<std::string> &genome1, std::vector<std:
 
 namespace mutate {
 
-auto rnd_engine = std::default_random_engine {};
 
 std::vector<std::string> &swap_mutate(std::vector<std::string> &genome) {
     int idx1 = randint(0, genome.size() - 1);

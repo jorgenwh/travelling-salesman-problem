@@ -10,8 +10,19 @@
 namespace TSP {
 namespace genetic {
 
+struct solution {
+    solution() = default;
+    solution(std::vector<std::string> &permutation) : permutation_(permutation) {}
+
+    std::vector<std::string> permutation_;
+    float distance_ = -1;
+};
+
+std::vector<solution> initialize_random_solutions(int population_size);
+
 static std::random_device rd;
-static std::mt19937 gen(rd());
+static std::mt19937_64 gen(rd());
+static std::default_random_engine rnd_engine = std::default_random_engine {};
 
 int randint(int min, int max);
 
