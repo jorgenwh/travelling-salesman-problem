@@ -1,4 +1,5 @@
 #include "genetic.h"
+#include "cities.h"
 
 #include <bits/stdc++.h>
 #include <string>
@@ -11,13 +12,23 @@ namespace genetic {
 
 std::vector<solution> initialize_random_solutions(int population_size) {
     std::vector<solution> population(population_size);
-    /*for (int i = 0; i < population_size; i++) {
+    for (int i = 0; i < population_size; i++) {
         std::vector<std::string> permutation = TSP::get_cities();
         std::shuffle(permutation.begin(), permutation.end(), rnd_engine);
         solution s(permutation);
         population[i] = s;
-    }*/
+    }
     return population;
+}
+
+void solution::print() const {
+    for (int i = 0; i < permutation_.size(); i++) {
+        std::cout << permutation_[i];
+        if (i < permutation_.size() - 1) {
+            std::cout << ", ";
+        }
+    }
+    std::cout << std::endl;
 }
 
 int randint(int min, int max) {

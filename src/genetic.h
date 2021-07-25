@@ -1,5 +1,7 @@
 #pragma once
 
+#include "cities.h"
+
 #include <limits>
 #include <iterator>
 #include <string>
@@ -12,7 +14,17 @@ namespace genetic {
 
 struct solution {
     solution() = default;
+    solution(float dist) : distance_(dist) {}
     solution(std::vector<std::string> &permutation) : permutation_(permutation) {}
+    void evaluate() {
+        if (distance_ == -1) {
+            distance_ = TSP::evaluate(permutation_);
+        }
+    }
+    void print() const;
+    bool operator<(const solution &other) const {
+        return distance_ < other.distance_;
+    }
 
     std::vector<std::string> permutation_;
     float distance_ = -1;

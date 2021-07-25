@@ -1,39 +1,27 @@
 #include "cities.h"
 #include "genetic.h"
+#include "optimize.h"
 
 #include <vector>
 #include <string>
 #include <iostream>
 #include <chrono>
 
-void print_vec(std::vector<std::string> &vec) {
-    for (int i = 0; i < vec.size(); i++) {
-        std::cout << vec[i];
-        if (i < vec.size() - 1) {
-            std::cout << ", ";
-        }
-    }
-    std::cout << std::endl << std::endl;
-}
-
 int main(int argc, char **argv) {
-    std::string filename = "../european_cities.csv";//argv[1];
-    int num_cities = 10;//std::stoi(argv[2]);
-    int num_threads = 1;//std::stoi(argv[3]);
-
+    std::string filename = "../european_cities.csv";
     TSP::initialize_city_data(filename);
-    
-    auto cities = TSP::get_cities();
-    std::cout << "original cities:" << std::endl;
-    print_vec(cities);
 
-    TSP::genetic::solution solution(cities);
-    print_vec(solution.permutation_);
+    int population_size = std::stoi(argv[1]);
+    float mutation_rate = std::stof(argv[2]);
+    int generations = std::stoi(argv[3]);
 
-    cities[1] = "LOL";
+    auto t1 = std::chrono::steady_clock::now();
+    auto solution = TSP::genetic::optimize(population_size, mutation_rate, generations);
+    auto t2 = std::chrono::steady_clock::now();
+    auto delta = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1).count();
 
-    print_vec(solution.permutation_);
-
-    print_vec(cities);
-
+    std::cout << "Settings: [population_size: " << population_size << ", mutation_rate: " << mutation_rate << ", generations: " << generations << "]" << std::endl;
+    std::cout << "Compute time: " << delta << " milliseconds" << std::endl;
+    std::cout << "Shortest distance found: " << solution.distance_ << " - with the solution:" << std::endl;
+    solution.print();
 }

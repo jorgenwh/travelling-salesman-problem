@@ -30,6 +30,9 @@ void initialize_city_data(std::string &filename) {
             std::string segment;
             if (cities_.size() == 0) {
                 while (std::getline(strm, segment, ';')) {
+                    if (segment.size() >= 6 && segment.substr(0, 6) == "Warsaw") {
+                        segment.pop_back();
+                    }
                     cities_.push_back(segment);
                     index_map_[segment] = cities_.size() - 1;
                 }
