@@ -54,7 +54,6 @@ private:
     int get_next_child_index_(); 
 
     void weighted_selection_(unsigned num);
-    };
-
+};
 } // genetic
 } // TSP
