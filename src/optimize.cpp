@@ -7,6 +7,8 @@
 #include <string>
 #include <limits>
 #include <algorithm>
+#include <thread>
+#include <mutex>
 
 namespace TSP {
 namespace genetic {
@@ -50,7 +52,11 @@ std::vector<solution> weighted_selection(std::vector<solution> &population, unsi
     return selected;
 }
 
-solution optimize(
+solution &Optimizer::get_next_solution_() {
+    ;
+}
+
+solution Optimizer::optimize(
         unsigned population_size,
         float mutation_rate,
         unsigned generations) {
@@ -81,7 +87,7 @@ solution optimize(
         for (int i = 0; i < num_children; i++) {
             solution &p1 = parents[randint(0, parents.size() - 1)];
             solution &p2 = parents[randint(0, parents.size() - 1)];
-            std::vector<std::string> child_permutation = crossover::pmx(p1.permutation_, p2.permutation_);
+            std::vector<std::string> child_permutation = crossover::roll_crossover(p1.permutation_, p2.permutation_);
 
             // roll whether or not to mutate this child
             if (distr_(rnd_engine_) <= mutation_rate) {
@@ -102,9 +108,7 @@ solution optimize(
                         exit(1);
                 }
             }
-            std::cout << 1 << std::endl;
             children[i] = solution(child_permutation);
-            std::cout << 2 << std::endl;
         }
         
         // add the new children to the population

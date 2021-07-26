@@ -39,7 +39,7 @@ static std::default_random_engine rnd_engine = std::default_random_engine {};
 int randint(int min, int max);
 
 namespace crossover {
-std::vector<std::string> pmx(std::vector<std::string> &genome1, std::vector<std::string> &genome2);
+std::vector<std::string> roll_crossover(std::vector<std::string> &genome1, std::vector<std::string> &genome2);
 } // crossover
 
 namespace mutate {
