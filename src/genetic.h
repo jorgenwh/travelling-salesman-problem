@@ -22,9 +22,11 @@ struct solution {
         }
     }
     void print() const;
-    bool operator<(const solution &other) const {
-        return distance_ < other.distance_;
-    }
+    bool operator<(const solution &other) const { return distance_ < other.distance_; }
+    bool operator>(const solution &other) const { return distance_ > other.distance_; }
+    bool operator<=(const solution &other) const { return distance_ <= other.distance_; }
+    bool operator>=(const solution &other) const { return distance_ >= other.distance_; }
+    bool operator==(const solution &other) const { return distance_ == other.distance_; }
 
     std::vector<std::string> permutation_;
     float distance_ = -1;
@@ -37,6 +39,7 @@ static std::mt19937_64 gen(rd());
 static std::default_random_engine rnd_engine = std::default_random_engine {};
 
 int randint(int min, int max);
+float randfloat(float min, float max);
 
 namespace crossover {
 std::vector<std::string> roll_crossover(std::vector<std::string> &genome1, std::vector<std::string> &genome2);

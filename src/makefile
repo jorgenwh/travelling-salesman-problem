@@ -1,9 +1,9 @@
 CXX = g++
-CXXFLAGS = -std=c++17 -O3
+CXXFLAGS = -std=c++17 -O3 -pthread
 CPPFLAGS =
 
-obj = build/main.o build/cities.o build/genetic.o build/optimize.o 
-headers = cities.h genetic.h optimize.h
+obj = build/main.o build/cities.o build/genetic.o build/optimizer.o 
+headers = cities.h genetic.h optimizer.h
 
 prog: $(obj)
 	$(CXX) $(CXXFLAGS) $(CPPFLAGS) $(obj) -o prog
@@ -17,8 +17,8 @@ build/cities.o: cities.cpp $(headers)
 build/genetic.o: genetic.cpp $(headers)
 	$(CXX) $(CXXFLAGS) $(CPPFLAGS) -c genetic.cpp -o build/genetic.o
 
-build/optimize.o: optimize.cpp $(headers)
-	$(CXX) $(CXXFLAGS) $(CPPFLAGS) -c optimize.cpp -o build/optimize.o
+build/optimizer.o: optimizer.cpp $(headers)
+	$(CXX) $(CXXFLAGS) $(CPPFLAGS) -c optimizer.cpp -o build/optimizer.o
 
 .PHONY: clean
 clean:

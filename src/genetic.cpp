@@ -34,8 +34,15 @@ void solution::print() const {
 int randint(int min, int max) {
     using distribution_type = std::uniform_int_distribution<int>;
     using param_type = typename distribution_type::param_type;
-    thread_local distribution_type dist;
-    return dist(gen, param_type(min, max));
+    thread_local distribution_type disti;
+    return disti(gen, param_type(min, max));
+}
+
+float randfloat(float min, float max) {
+    using distribution_type = std::uniform_real_distribution<float>;
+    using param_type = typename distribution_type::param_type;
+    thread_local distribution_type disti;
+    return disti(gen, param_type(min, max));
 }
 
 namespace crossover {
