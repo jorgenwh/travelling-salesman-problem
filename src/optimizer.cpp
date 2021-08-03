@@ -145,6 +145,8 @@ solution Optimizer::optimize() {
     }
     // run generations
     for (int gen = 0; gen < generations_; gen++) {
+        std::cout << "Generation: " << (gen + 1) << "\r" << std::flush;
+
         // select parents
         weighted_selection_((int) (population_size_ / 2));
         // create children
@@ -161,7 +163,7 @@ solution Optimizer::optimize() {
         int ete = population_.size() - population_size_;
         population_.erase(population_.end() - ete, population_.end());
     }    
-
+    std::cout << "Generation: " << generations_ << std::endl;
     return best_solution_;
 }
 
